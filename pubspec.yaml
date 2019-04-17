@@ -1,4 +1,4 @@
-name: common_business_rules
+name: common_business_rules_validators
 description: Common business rules and algorithms for business in Brazil like CEP,CNPJ and CPF
 version: 0.0.1
 author: Sattva Company <daniel.vieira@sattva.company>
