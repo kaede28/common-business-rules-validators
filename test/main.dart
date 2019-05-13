@@ -1,4 +1,4 @@
-import 'package:common_business_rules/controller.dart';
+import 'package:common_business_rules_validators/controller.dart';
 
 import 'package:test/test.dart';
 

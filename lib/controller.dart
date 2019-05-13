@@ -1,4 +1,4 @@
-library rules;
+library validators;
 
 export 'controller/cep.dart';
 export 'controller/cnpj.dart';
