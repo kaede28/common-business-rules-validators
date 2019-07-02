@@ -9,4 +9,4 @@ environment:
 dependencies:
   
 dev_dependencies:  
-  test: any
+  test: 1.6.4
