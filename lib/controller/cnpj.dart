@@ -6,6 +6,9 @@ class CNPJ {
 
   }
 
+  String format() =>
+    '${_cnpj.substring(0,2)}.${_cnpj.substring(2,5)}.${_cnpj.substring(5,8)}/${_cnpj.substring(8,12)}-${_cnpj.substring(12,14)}';
+
   String _cnpj;
 
   _validate() {
