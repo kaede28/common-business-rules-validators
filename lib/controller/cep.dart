@@ -116,7 +116,7 @@ extension Cep on String {
 
     if (! token.isCEP) {
 
-      throw FormatException('$token is not a CEP');
+      return null;
 
     }
 

@@ -118,7 +118,7 @@ extension Cnpj on String {
 
     if (! token.isCNPJ) {
 
-      throw FormatException('$token is not a CNPJ');
+      return null;
 
     }
 

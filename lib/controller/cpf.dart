@@ -107,7 +107,7 @@ extension Cpf on String {
 
     if (! token.isCPF) {
 
-      throw FormatException('$token is not a CPF');
+      return null;
 
     }
 
