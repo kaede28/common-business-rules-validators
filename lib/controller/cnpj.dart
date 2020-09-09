@@ -89,3 +89,41 @@ class CNPJ {
   }
 
 }
+
+extension Cnpj on String {
+
+  bool get isCNPJ {
+
+    CNPJ cnpj;
+
+    try {
+
+      cnpj = CNPJ(this);
+
+    }
+
+    on FormatException {
+
+      return false;
+
+    }
+
+    return cnpj.isValid;
+
+  }
+
+  String get asCNPJ {
+
+    var token = this;
+
+    if (! token.isCNPJ) {
+
+      throw FormatException('$token is not a CNPJ');
+
+    }
+
+    return '${token.substring(0,2)}.${token.substring(2,5)}.${token.substring(5,8)}/${token.substring(8,12)}-${token.substring(12,14)}';
+
+  }
+
+}

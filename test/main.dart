@@ -1,130 +1,147 @@
-import 'package:common_business_rules_validators/controller.dart';
-
 import 'package:test/test.dart';
+import 'package:validators/controller.dart';
 
 void main() {
 
-  group('CEP', () {
+    group('CEP', () {
 
-    const List<String> validCEPs = [
-      
-      '13604186',
-      '01000000',
-      '99999999'
-    
-    ];
-    
-    const List<String> invalidCEPs = [
-      
-      '13604-186',
-      '13.604-186',
-      '13.604186',
-      '13604',
-      '',
-      null,
-      '1000000',
-      '00000000'
-      
-    ];      
+        const List<String> validCEPs = [
 
-    for (String stub in validCEPs) {
+            '13604186',
+            '01000000',
+            '99999999'
 
-      test("CEP ${stub.isEmpty ? 'empty' : stub} is valid", () async {
-        
-        expect(CEP(stub).isValid,true);
+        ];
 
-      });
+        const List<String> invalidCEPs = [
 
-    }
-    
-    for (String stub in invalidCEPs) {
+            '13604-186',
+            '13.604-186',
+            '13.604186',
+            '13604',
+            '',
+            null,
+            '1000000',
+            '00000000'
 
-      test("CEP $stub is invalid", () async {
-        
-        expect(() => CEP(stub), throwsFormatException, reason: 'Invalid postal code');
+        ];
 
-      });
-      
-    }
+        for (String stub in validCEPs) {
 
-  });
+            test("${stub.isEmpty ? 'empty' : stub} is valid", () async {
 
-  group('CNPJ', () {
+                expect(CEP(stub).isValid,true);
 
-    const List<String> validCNPJs = [
-      
-      '08342124000167',
-      
-    ];
-    
-    const List<String> invalidCNPJs = [
-      
-      '08342124000168',
-      '08.342.124/0001-67',      
-      '',
-      null,
-      
-    ];      
+            });
 
-    for (String stub in validCNPJs) {
+        }
 
-     test("CNPJ ${stub.isEmpty ? 'empty' : stub} is valid", () async {
-        
-        expect(CNPJ(stub).isValid,true);
+        for (String stub in invalidCEPs) {
 
-      });
+            test("$stub is invalid", () async {
 
-    }
-    
-    for (String stub in invalidCNPJs) {
+                expect(() => CEP(stub), throwsFormatException, reason: 'Invalid postal code');
 
-      test("CNPJ $stub is invalid", () async {
-        
-        expect(() => CNPJ(stub), throwsFormatException, reason: 'Invalid CNPJ');
+            });
 
-      });
-      
-    }
+        }
 
-  });
+        test("13604186 formats to 13.604-186", () async {
 
-  group('CPF', () {
+            expect('13.604-186', '13604186'.asCEP, reason: 'Invalid CEP format string');
 
-    const List<String> validCPFs = [
-      
-      '31392975808',
-      
-    ];
-    
-    const List<String> invalidCPFs = [
-      
-      '31392975807',
-      '313.929.758-08',      
-      '',
-      null,
-      
-    ];      
+        });
 
-    for (String stub in validCPFs) {
+    });
 
-      test("CPF ${stub.isEmpty ? 'empty' : stub} is valid", () async {
-        
-        expect(CPF(stub).isValid,true);
+    group('CNPJ', () {
 
-      });
+        const List<String> validCNPJs = [
 
-    }
-    
-    for (String stub in invalidCPFs) {
+            '08342124000167',
 
-      test("CPF $stub is invalid", () async {
-        
-        expect(() => CPF(stub), throwsFormatException, reason: 'Invalid CPF');
-        
-      });
-      
-    }
+        ];
 
-  });
+        const List<String> invalidCNPJs = [
+
+            '08342124000168',
+            '08.342.124/0001-67',
+            '',
+            null,
+
+        ];
+
+        for (String stub in validCNPJs) {
+
+            test("${stub.isEmpty ? 'empty' : stub} is valid", () async {
+
+                expect(CNPJ(stub).isValid,true);
+
+            });
+
+        }
+
+        for (String stub in invalidCNPJs) {
+
+            test("$stub is invalid", () async {
+
+                expect(() => CNPJ(stub), throwsFormatException, reason: 'Invalid CNPJ');
+
+            });
+
+        }
+
+        test("formatter", () async {
+
+            expect('08.342.124/0001-67', '08342124000167'.asCNPJ, reason: 'Invalid CNPJ format string');
+
+        });
+
+    });
+
+    group('CPF', () {
+
+        const List<String> validCPFs = [
+
+            '31392975808',
+
+        ];
+
+        const List<String> invalidCPFs = [
+
+            '31392975807',
+            '313.929.758-08',
+            '',
+            null,
+
+        ];
+
+        for (String stub in validCPFs) {
+
+            test("${stub.isEmpty ? 'empty' : stub} is valid", () async {
+
+                expect(CPF(stub).isValid,true);
+
+            });
+
+        }
+
+        for (String stub in invalidCPFs) {
+
+            test("$stub is invalid", () async {
+
+                expect(() => CPF(stub), throwsFormatException, reason: 'Invalid CPF');
+
+            });
+
+        }
+
+        test("31392975808 formats to 313.929.758-08", () async {
+
+            expect('313.929.758-08', '31392975808'.asCPF, reason: 'Invalid CPF format string');
+
+        });
+
+    });
 
 }

@@ -78,3 +78,41 @@ class CPF {
   }
 
 }
+
+extension Cpf on String {
+
+  bool get isCPF {
+
+    CPF cpf;
+
+    try {
+
+      cpf = CPF(this);
+
+    }
+
+    on FormatException {
+
+      return false;
+
+    }
+
+    return cpf.isValid;
+
+  }
+
+  String get asCPF {
+
+    var token = this;
+
+    if (! token.isCPF) {
+
+      throw FormatException('$token is not a CPF');
+
+    }
+
+    return '${token.substring(0,3)}.${token.substring(3,6)}.${token.substring(6,9)}-${token.substring(9,11)}';
+
+  }
+
+}

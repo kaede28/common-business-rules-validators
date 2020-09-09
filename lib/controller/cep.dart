@@ -1,3 +1,6 @@
+import 'cnpj.dart';
+import 'cpf.dart';
+
 class CEP {
 
   CEP(this._cep) {
@@ -81,6 +84,44 @@ class CEP {
       cep >= 01000000 && cep <=	19999999 || // São Paulo(SP)
       cep >= 77000000 && cep <=	77999999;   // Tocantins(TO)
       
+  }
+
+}
+
+extension Cep on String {
+
+  bool get isCEP {
+
+    CEP cep;
+
+    try {
+
+      cep = CEP(this);
+
+    }
+
+    on FormatException {
+
+      return false;
+
+    }
+
+    return cep.isValid;
+
+  }
+
+  String get asCEP {
+
+    var token = this;
+
+    if (! token.isCEP) {
+
+      throw FormatException('$token is not a CEP');
+
+    }
+
+    return '${token.substring(0,2)}.${token.substring(2,5)}-${token.substring(5,8)}';
+
   }
 
 }
