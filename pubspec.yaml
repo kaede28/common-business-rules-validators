@@ -1,6 +1,6 @@
 name: validators
 description: Common business rules and algorithms for business in Brazil like CEP,CNPJ and CPF
-version: 0.0.1
+version: 0.0.2
 author: Sattva Company <daniel.vieira@sattva.company>
 
 environment:
